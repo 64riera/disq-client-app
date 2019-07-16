@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Detalles
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list lines="full">
+    <ion-list-header>
+      <ion-label>Datos del evento</ion-label>
+    </ion-list-header>
+      <ion-item *ngIf="event">
+        <ion-label position="floating">Titulo</ion-label>
+        <ion-input required type="text"
+        [(ngModel)] = "event.title">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="event">
+          <ion-label position="floating">Artista</ion-label>
+        <ion-input required type="text" 
+        [(ngModel)] = "event.artist">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="event">
+        <ion-label position="floating">Fecha y hora</ion-label>
+        <ion-datetime displayFormat="D MMM YYYY hh:mm" min="2019" max="2099" value="2019-06-17T11:06Z" required 
+        [(ngModel)] = "event.date">
+        </ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="event">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input required type="text" 
+        [(ngModel)] = "event.description">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Lugar</ion-label>
+        <ion-input required type="text" 
+        [(ngModel)] = "event.place">
+        </ion-input>
+      </ion-item>
+     <ion-button expand="full" style="margin-top: 4%" (click)="saveEvent()">Guardar</ion-button>
+  </ion-list>
+  <ion-fab *ngIf="eventId" vertical="bottom" horizontal="end" slot="fixed" color="danger">
+    <ion-fab-button color="danger" routerLink="/home" routerDirection="forward" (click)="onRemove(eventId)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
