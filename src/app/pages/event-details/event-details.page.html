@@ -1,7 +1,14 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark" mode="ios">
+
+    <ion-buttons slot="secondary">
+        <ion-button routerLink="/home" routerDirection="forward">
+            <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
     <ion-title>
-      Detalles
+      Detalles del evento
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +16,6 @@
 <ion-content padding>
 
   <ion-list lines="full">
-    <ion-list-header>
-      <ion-label>Datos del evento</ion-label>
-    </ion-list-header>
       <ion-item *ngIf="event">
         <ion-label position="floating">Titulo</ion-label>
         <ion-input required type="text"
@@ -42,7 +46,8 @@
         [(ngModel)] = "event.place">
         </ion-input>
       </ion-item>
-     <ion-button expand="full" style="margin-top: 4%" (click)="saveEvent()">Guardar</ion-button>
+     <ion-button expand="full" style="margin-top: 4%" (click)="saveEvent()" color="dark">Guardar</ion-button>
+     <ion-button expand="full" style="margin-top: 4%" routerLink="/home" routerDirection="forward" color="dark">Volver</ion-button>
   </ion-list>
   <ion-fab *ngIf="eventId" vertical="bottom" horizontal="end" slot="fixed" color="danger">
     <ion-fab-button color="danger" routerLink="/home" routerDirection="forward" (click)="onRemove(eventId)">

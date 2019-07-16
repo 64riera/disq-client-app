@@ -34,7 +34,7 @@ export class EventDetailsPage implements OnInit {
 
   async loadEvent(){
     const loading = await this.loadingController.create({
-      message: 'Loading...'
+      message: 'Cargando...'
     });
     await loading.present();
     this.eventService.getEvent(this.eventId).subscribe(res => {
@@ -45,26 +45,33 @@ export class EventDetailsPage implements OnInit {
 
   async saveEvent(){
     
-    const loading = await this.loadingController.create({
-      message: 'Saving...'
-    });
-    await loading.present();
-
-    if (this.eventId) {
-      //Update
-      this.eventService.updateEvent(this.event, this.eventId).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/');
-      });
-
+    if ( this.event.artist == '' || this.event.date == '' || this.event.description == '' || this.event.place == '' || this.event.title == '') {
+      this.onEmpty();
     } else {
-      //Save
-      this.eventService.addEvent(this.event).then(() => {
-        loading.dismiss();
-        this.nav.navigateBack('/');
+
+      const loading = await this.loadingController.create({
+        message: 'Publicando...'
       });
+      await loading.present();
+  
+      if (this.eventId) {
+        //Update
+        this.eventService.updateEvent(this.event, this.eventId).then(() => {
+          loading.dismiss();
+          this.nav.navigateForward('/');
+        });
+  
+      } else {
+        //Save
+        this.eventService.addEvent(this.event).then(() => {
+          loading.dismiss();
+          this.nav.navigateBack('/');
+        });
+  
+      }
 
     }
+    
   }
 
   async onRemove(idEvent: string){
@@ -92,7 +99,27 @@ export class EventDetailsPage implements OnInit {
     });
 
     await alert.present();
+    
+  }
 
+  async onEmpty(){
+
+    const alert = await this.alertController.create({
+      header: 'Datos no válidos',
+      message: 'Llene todos los campos para continuar',
+      buttons: [
+        {
+          text: 'Entendido',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
     
   }
 

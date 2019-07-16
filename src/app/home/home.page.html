@@ -1,18 +1,18 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark" mode="ios">
     <ion-title>
-      Inicio
+      Eventos publicados
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-      <ion-list-header>
+      <!-- <ion-list-header>
           <ion-label>Eventos publicados</ion-label>
-        </ion-list-header>
-    <ion-item-sliding *ngFor="let event of events">
-      <ion-item lines="inset" button [routerLink]="['/details', event.id]">
+      </ion-list-header> -->
+    <!-- <ion-item-sliding color="dark" *ngFor="let event of events">
+      <ion-item color="dark" lines="inset" button [routerLink]="['/details', event.id]">
         <ion-label>
           <h2 style="font-weight: 500">{{ event.title }}</h2>
           <h3>{{ event.description }}</h3>
@@ -24,10 +24,28 @@
           <ion-icon name="trash" slot="end"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-sliding> -->
+
+    <ion-card *ngFor="let event of events" color="dark">
+      <ion-item color="dark">
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label>{{ event.title }}</ion-label>
+        <ion-button fill="outline" slot="end" [routerLink]="['/details', event.id]">Editar</ion-button>
+      </ion-item>
+      
+      <ion-card-content color="medium">
+        {{ event.description }}
+      </ion-card-content>
+
+      <ion-item href="#" color="dark">
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label>{{ event.place }}</ion-label>
+      </ion-item>
+    </ion-card>
+
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/details" routerDirection="forward">
+    <ion-fab-button routerLink="/details" routerDirection="forward" color="dark">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
