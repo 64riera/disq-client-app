@@ -7,28 +7,8 @@
 </ion-header>
 
 <ion-content>
-
-    <img style="width: 80px; height: 140px; align-content: center; margin: 5% auto 1% auto; display: block;" src="../assets/maleante.png" alt="">
-
+  <img style="width: 80px; height: 140px; align-content: center; margin: 5% auto 1% auto; display: block;" src="../assets/maleante.png" alt="">
   <ion-list>
-      <!-- <ion-list-header>
-          <ion-label>Eventos publicados</ion-label>
-      </ion-list-header> -->
-    <!-- <ion-item-sliding color="dark" *ngFor="let event of events">
-      <ion-item color="dark" lines="inset" button [routerLink]="['/details', event.id]">
-        <ion-label>
-          <h2 style="font-weight: 500">{{ event.title }}</h2>
-          <h3>{{ event.description }}</h3>
-          <p>{{ event.place }}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="onRemove(event.id)" color="danger">
-          <ion-icon name="trash" slot="end"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding> -->
-
     <ion-card *ngFor="let event of events" color="dark">
       <ion-item color="dark">
         <ion-icon name="calendar" slot="start"></ion-icon>
@@ -45,7 +25,6 @@
         <ion-label>{{ event.place }}</ion-label>
       </ion-item>
     </ion-card>
-
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/details" routerDirection="forward" color="dark">

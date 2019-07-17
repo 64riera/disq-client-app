@@ -23,7 +23,9 @@ export class EventDetailsPage implements OnInit {
 
   eventId = null;
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private eventService: EventService, private loadingController: LoadingController, private alertController: AlertController) { }
+  constructor(
+    private route: ActivatedRoute, private nav: NavController, private eventService: EventService, 
+    private loadingController: LoadingController, private alertController: AlertController) { }
 
   ngOnInit() {
     this.eventId = this.route.snapshot.params['id'];
@@ -44,7 +46,6 @@ export class EventDetailsPage implements OnInit {
   }
 
   async saveEvent(){
-    
     if ( this.event.artist == '' || this.event.date == '' || this.event.description == '' || this.event.place == '' || this.event.title == '') {
       this.onEmpty();
     } else {
@@ -75,7 +76,6 @@ export class EventDetailsPage implements OnInit {
   }
 
   async onRemove(idEvent: string){
-
     const alert = await this.alertController.create({
       header: 'Eliminar',
       message: 'Deseas eliminar este evento?',
@@ -99,11 +99,10 @@ export class EventDetailsPage implements OnInit {
     });
 
     await alert.present();
-    
+  
   }
 
   async onEmpty(){
-
     const alert = await this.alertController.create({
       header: 'Datos no válidos',
       message: 'Llene todos los campos para continuar',

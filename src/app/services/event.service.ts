@@ -8,7 +8,6 @@ import { EventI } from '../models/event.interface';
   providedIn: 'root'
 })
 export class EventService {
-
   
   private eventsCollection: AngularFirestoreCollection<EventI>;
   private events: Observable<EventI[]>;
